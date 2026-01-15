@@ -7,7 +7,7 @@ A small PowerShell script that prints key network parameters for all active netw
 
 ## Files
 - `nic-info.ps1` — main script
-
+- `network-info.sh` — linux script
 ## Usage
 ```powershell
 git clone https://github.com/poguin/nic-info-script.git
