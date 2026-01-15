@@ -1,23 +1,26 @@
 #!/bin/bash
 
-echo "===== TINKLO INFORMACIJA ====="
-echo ""
+echo "=== Network Info ==="
 
-echo "► IP adresai:"
-ip addr show
-echo ""
+IF=$(ip route | awk '/default/ {print $5; exit}')
 
-echo "► Maršrutizavimo lentelė:"
-ip route show
-echo ""
+echo "Interface: $IF"
 
-echo "► DNS serveriai:"
-cat /etc/resolv.conf
-echo ""
+echo "IP:"
+ip -4 addr show "$IF" | awk '/inet /{print $2}'
 
-echo "► Aktyvūs tinklo ryšiai:"
-ss -tulpn
-echo ""
+echo "MAC:"
+cat /sys/class/net/$IF/address
 
-echo "► Tinklo sąsajos:"
-nmcli device status 2>/dev/null || echo "nmcli nepasiekiamas"
+echo "Gateway:"
+ip route | awk '/default/ {print $3}'
+
+echo "DNS:"
+grep nameserver /etc/resolv.conf | awk '{print $2}'
+
+echo "Link speed:"
+ethtool "$IF" 2>/dev/null | awk -F': ' '/Speed/ {print $2}'
+
+echo "DHCP:"
+nmcli -g DHCP4 device show "$IF" 2>/dev/null || echo "unknown"
+
