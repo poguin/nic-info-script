@@ -10,6 +10,6 @@ A small PowerShell script that prints key network parameters for all active netw
 
 ## Usage
 ```powershell
-git clone https://github.com/<your-username>/nic-info-script.git
+git clone https://github.com/poguin/nic-info-script.git
 cd nic-info-script
 .\nic-info.ps1
