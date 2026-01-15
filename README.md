@@ -5,5 +5,5 @@ A small PowerShell/Bash script that prints key network parameters for all active
 ## Requirements
 - Windows PowerShell 5.1 or later (If using windows script)
 ## Files
-- `nic-info.ps1` — Windows script
+- `tinklai.ps1` — Windows script
 - `network-info.sh` — Linux script
